@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guia de Prompting Eficaz | Dark Mode</title>
+    <!-- Carregamento do Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        // Configuração customizada do Tailwind para o tema dark/Apple
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'dark-bg': '#141417', // Fundo principal escuro
+                        'dark-surface': '#1c1c1f', // Superfície principal (card)
+                        'dark-alt': '#2a2a2d', // Superfície secundária/detalhes
+                        'highlight-blue': '#0a84ff', // Azul do iOS/Apple
+                        'good-green': '#34d399', // Verde para prompts bons
+                        'bad-red': '#f87171', // Vermelho para prompts ruins
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Importação da fonte Inter (recomendada para estilo clean) */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Estilo para a caixa de código/prompt */
+        .prompt-code {
+            padding: 1rem;
+            border-radius: 0.75rem;
+            white-space: pre-wrap; /* Garante quebras de linha em dispositivos pequenos */
+            overflow-x: auto;
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+        
+        /* Efeito sutil de elevação e cantos arredondados para as seções */
+        .section-card {
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.06);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .section-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-dark-bg text-gray-100 min-h-screen p-4 md:p-8">
+
+    <div class="max-w-6xl mx-auto">
+        
+        <!-- Cabeçalho Principal (Clean, Apple-like) -->
+        <header class="text-center mb-12 pt-6">
+            <h1 class="text-5xl md:text-6xl font-extrabold tracking-tight mb-3">
+                Guia de <span class="text-highlight-blue">Prompting</span> Eficaz
+            </h1>
+            <p class="text-xl md:text-2xl text-gray-400 font-light">
+                Aprenda a se comunicar com a IA: o que funciona e o que evitar.
+            </p>
+        </header>
+
+        <!-- Seção de Bons Prompts (Eficazes) -->
+        <section class="mb-12">
+            <h2 class="text-3xl font-bold mb-6 text-good-green">Bons Prompts (Eficazes)</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+                <!-- Exemplo 1: Técnica de Persona -->
+                <div class="section-card p-6 bg-dark-surface border-t-4 border-good-green">
+                    <span class="inline-block px-3 py-1 text-sm font-semibold rounded-full bg-good-green text-dark-bg mb-4">
+                        Técnica: Persona
+                    </span>
+                    <div class="prompt-code bg-dark-alt text-good-green/90 mb-4">
+                        Aja como um historiador especializado na Revolução Industrial. Explique as 3 maiores mudanças sociais em um parágrafo conciso.
+                    </div>
+                    <p class="text-sm text-gray-300">
+                        <span class="font-bold text-good-green">Justificativa:</span> <span class="font-medium">Define um **papel claro** para a IA, elevando a qualidade e autoridade da resposta.</span>
+                    </p>
+                </div>
+
+                <!-- Exemplo 2: Técnica de Contexto e Restrição de Formato -->
+                <div class="section-card p-6 bg-dark-surface border-t-4 border-good-green">
+                    <span class="inline-block px-3 py-1 text-sm font-semibold rounded-full bg-good-green text-dark-bg mb-4">
+                        Técnica: Audiência e Formato
+                    </span>
+                    <div class="prompt-code bg-dark-alt text-good-green/90 mb-4">
+                        Estou no 5º ano e quero saber como a fotossíntese funciona. Use apenas analogias com a culinária e limite-se a 4 etapas numeradas.
+                    </div>
+                    <p class="text-sm text-gray-300">
+                        <span class="font-bold text-good-green">Justificativa:</span> <span class="font-medium">Especifica a **audiência (5º ano)**, o **método (analogias)** e o **formato (4 etapas)**.</span>
+                    </p>
+                </div>
+
+                <!-- Exemplo 3: Técnica de Raciocínio (Chain-of-Thought) -->
+                <div class="section-card p-6 bg-dark-surface border-t-4 border-good-green">
+                    <span class="inline-block px-3 py-1 text-sm font-semibold rounded-full bg-good-green text-dark-bg mb-4">
+                        Técnica: Pensamento Passo a Passo
+                    </span>
+                    <div class="prompt-code bg-dark-alt text-good-green/90 mb-4">
+                        Antes de dar a resposta final, liste todos os pressupostos lógicos que você está usando para resolver este enigma: [ENIGMA COMPLEXO].
+                    </div>
+                    <p class="text-sm text-gray-300">
+                        <span class="font-bold text-good-green">Justificativa:</span> <span class="font-medium">Força a IA a **raciocinar em voz alta**, melhorando a precisão de tarefas complexas.</span>
+                    </p>
+                </div>
+                
+                <!-- Exemplo 4: Técnica de Instrução de Saída Estruturada (JSON) -->
+                <div class="section-card p-6 bg-dark-surface border-t-4 border-good-green">
+                    <span class="inline-block px-3 py-1 text-sm font-semibold rounded-full bg-good-green text-dark-bg mb-4">
+                        Técnica: Saída Estruturada
+                    </span>
+                    <div class="prompt-code bg-dark-alt text-good-green/90 mb-4">
+                        Gere uma lista de 5 livros clássicos sobre finanças, no formato JSON, com os campos: "titulo", "autor" e "ano".
+                    </div>
+                    <p class="text-sm text-gray-300">
+                        <span class="font-bold text-good-green">Justificativa:</span> <span class="font-medium">Exige que a resposta venha em um **formato lido por máquinas**, facilitando o uso em software.</span>
+                    </p>
+                </div>
+
+                <!-- Exemplo 5: Técnica de Few-Shot (Exemplos) -->
+                <div class="section-card p-6 bg-dark-surface border-t-4 border-good-green">
+                    <span class="inline-block px-3 py-1 text-sm font-semibold rounded-full bg-good-green text-dark-bg mb-4">
+                        Técnica: Exemplos (Few-Shot)
+                    </span>
+                    <div class="prompt-code bg-dark-alt text-good-green/90 mb-4">
+                        Gere um título para a notícia "Novo estudo sobre o sono".
+                        Exemplo 1: Estudo 'Revolução do Sono' Aponta Benefícios Inéditos.
+                        Exemplo 2: O Sono Tem Segredos? Pesquisa Revela Padrões Inesperados.
+                        Meu título: [Notícia Original].
+                    </div>
+                    <p class="text-sm text-gray-300">
+                        <span class="font-bold text-good-green">Justificativa:</span> <span class="font-medium">Oferecer **exemplos de entrada/saída** instrui a IA sobre o estilo e tom desejados.</span>
+                    </p>
+                </div>
+
+                <!-- Exemplo 6: Técnica de Restrição Negativa -->
+                <div class="section-card p-6 bg-dark-surface border-t-4 border-good-green">
+                    <span class="inline-block px-3 py-1 text-sm font-semibold rounded-full bg-good-green text-dark-bg mb-4">
+                        Técnica: Restrição Negativa
+                    </span>
+                    <div class="prompt-code bg-dark-alt text-good-green/90 mb-4">
+                        Crie 5 ideias de nomes para um café temático de gatos. Não use as palavras "Miau", "Gataria" ou "Fofura".
+                    </div>
+                    <p class="text-sm text-gray-300">
+                        <span class="font-bold text-good-green">Justificativa:</span> <span class="font-medium">Define claramente o **que deve ser evitado**, refinando o resultado e bloqueando clichês.</span>
+                    </p>
+                </div>
+
+                <!-- NOVO Exemplo 7: Técnica de Delimitação -->
+                <div class="section-card p-6 bg-dark-surface border-t-4 border-good-green">
+                    <span class="inline-block px-3 py-1 text-sm font-semibold rounded-full bg-good-green text-dark-bg mb-4">
+                        Técnica: Delimitação
+                    </span>
+                    <div class="prompt-code bg-dark-alt text-good-green/90 mb-4">
+                        Analise o sentimento do texto a seguir. O texto está entre triplos sinais de maior: >>> O mercado de ações subiu inesperadamente hoje. Eu investi todo o meu dinheiro.
+                    </div>
+                    <p class="text-sm text-gray-300">
+                        <span class="font-bold text-good-green">Justificativa:</span> <span class="font-medium">Ajuda a IA a distinguir **instruções** do **conteúdo** a ser processado.</span>
+                    </p>
+                </div>
+
+                <!-- NOVO Exemplo 8: Técnica de Passo a Passo com Formato -->
+                <div class="section-card p-6 bg-dark-surface border-t-4 border-good-green">
+                    <span class="inline-block px-3 py-1 text-sm font-semibold rounded-full bg-good-green text-dark-bg mb-4">
+                        Técnica: Passo a Passo com Formato
+                    </span>
+                    <div class="prompt-code bg-dark-alt text-good-green/90 mb-4">
+                        Crie um plano de treino de 3 dias para iniciantes. Primeiro, liste os objetivos (Metas). Depois, crie a tabela (Saída final).
+                    </div>
+                    <p class="text-sm text-gray-300">
+                        <span class="font-bold text-good-green">Justificativa:</span> <span class="font-medium">Força a IA a **planejar a estrutura (Metas)** antes de gerar o resultado final formatado.</span>
+                    </p>
+                </div>
+
+                <!-- NOVO Exemplo 9: Técnica de Restrição de Foco -->
+                <div class="section-card p-6 bg-dark-surface border-t-4 border-good-green">
+                    <span class="inline-block px-3 py-1 text-sm font-semibold rounded-full bg-good-green text-dark-bg mb-4">
+                        Técnica: Restrição de Foco
+                    </span>
+                    <div class="prompt-code bg-dark-alt text-good-green/90 mb-4">
+                        Escreva um parágrafo sobre a Guerra Fria. Concentre-se exclusivamente no papel da tecnologia espacial e ignore a política terrestre.
+                    </div>
+                    <p class="text-sm text-gray-300">
+                        <span class="font-bold text-good-green">Justificativa:</span> <span class="font-medium">Restringe o escopo para um **tópico específico**, evitando respostas genéricas sobre o tema.</span>
+                    </p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Seção de Prompts Ruins (Ineficazes) -->
+        <section>
+            <h2 class="text-3xl font-bold mb-6 text-bad-red">Prompts Ruins (Ineficazes)</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+                <!-- Exemplo 1: Vago e Amplo -->
+                <div class="section-card p-6 bg-dark-surface border-t-4 border-bad-red">
+                    <span class="inline-block px-3 py-1 text-sm font-semibold rounded-full bg-dark-alt text-gray-400 mb-4">
+                        Tipo: Vago
+                    </span>
+                    <div class="prompt-code bg-dark-alt text-bad-red/90 mb-4">
+                        Me fale sobre o universo.
+                    </div>
+                    <p class="text-sm text-gray-300">
+                        <span class="font-bold text-bad-red">Justificativa:</span> <span class="font-medium">É muito **amplo e genérico**, resultando em uma resposta superficial ou não direcionada.</span>
+                    </p>
+                </div>
+
+                <!-- Exemplo 2: Ambíguo/Falta de Foco -->
+                <div class="section-card p-6 bg-dark-surface border-t-4 border-bad-red">
+                    <span class="inline-block px-3 py-1 text-sm font-semibold rounded-full bg-dark-alt text-gray-400 mb-4">
+                        Tipo: Ambíguo
+                    </span>
+                    <div class="prompt-code bg-dark-alt text-bad-red/90 mb-4">
+                        O que devo fazer com meu tempo livre?
+                    </div>
+                    <p class="text-sm text-gray-300">
+                        <span class="font-bold text-bad-red">Justificativa:</span> <span class="font-medium">A IA não tem **informações contextuais** sobre seus hobbies, recursos ou objetivos de vida.</span>
+                    </p>
+                </div>
+
+                <!-- Exemplo 3: Sem Restrição de Saída -->
+                <div class="section-card p-6 bg-dark-surface border-t-4 border-bad-red">
+                    <span class="inline-block px-3 py-1 text-sm font-semibold rounded-full bg-dark-alt text-gray-400 mb-4">
+                        Tipo: Sem Formato
+                    </span>
+                    <div class="prompt-code bg-dark-alt text-bad-red/90 mb-4">
+                        Escreva uma crítica sobre o filme 'Duna'.
+                    </div>
+                    <p class="text-sm text-gray-300">
+                        <span class="font-bold text-bad-red">Justificativa:</span> <span class="font-medium">Não especifica o **tamanho (frase, parágrafo, ensaio)**, o **tom (formal, engraçado)** ou o **foco (visual, história)**.</span>
+                    </p>
+                </div>
+                
+                <!-- Exemplo 4: Tipo: Superlativos Vagos -->
+                <div class="section-card p-6 bg-dark-surface border-t-4 border-bad-red">
+                    <span class="inline-block px-3 py-1 text-sm font-semibold rounded-full bg-dark-alt text-gray-400 mb-4">
+                        Tipo: Superlativos Vagos
+                    </span>
+                    <div class="prompt-code bg-dark-alt text-bad-red/90 mb-4">
+                        Qual é a melhor linguagem de programação para aprender hoje?
+                    </div>
+                    <p class="text-sm text-gray-300">
+                        <span class="font-bold text-bad-red">Justificativa:</span> <span class="font-medium">Pede um **juízo de valor subjetivo** ("melhor"), sem especificar o objetivo (web, jogos, dados).</span>
+                    </p>
+                </div>
+                
+                <!-- Exemplo 5: Tipo: Instruções Conflitantes -->
+                <div class="section-card p-6 bg-dark-surface border-t-4 border-bad-red">
+                    <span class="inline-block px-3 py-1 text-sm font-semibold rounded-full bg-dark-alt text-gray-400 mb-4">
+                        Tipo: Conflitante
+                    </span>
+                    <div class="prompt-code bg-dark-alt text-bad-red/90 mb-4">
+                        Escreva um poema sobre a primavera em 10 linhas. Não use rimas nem metáforas.
+                    </div>
+                    <p class="text-sm text-gray-300">
+                        <span class="font-bold text-bad-red">Justificativa:</span> <span class="font-medium">Pede um **poema**, mas restringe elementos essenciais que o definem, gerando um texto sem qualidade.</span>
+                    </p>
+                </div>
+                
+                <!-- Exemplo 6: Tipo: Longo Demais para o Modelo -->
+                <div class="section-card p-6 bg-dark-surface border-t-4 border-bad-red">
+                    <span class="inline-block px-3 py-1 text-sm font-semibold rounded-full bg-dark-alt text-gray-400 mb-4">
+                        Tipo: Extenso/Inviável
+                    </span>
+                    <div class="prompt-code bg-dark-alt text-bad-red/90 mb-4">
+                        Escreva uma tese de doutorado completa sobre a história da eletricidade na América do Sul, citando 50 fontes e escrevendo 20.000 palavras.
+                    </div>
+                    <p class="text-sm text-gray-300">
+                        <span class="font-bold text-bad-red">Justificativa:</span> <span class="font-medium">Excede a **capacidade de saída** da IA em uma única resposta e exige profundidade de pesquisa humana.</span>
+                    </p>
+                </div>
+                
+                <!-- NOVO Exemplo 7: Tipo: Dependente de Conhecimento Externo Implícito -->
+                <div class="section-card p-6 bg-dark-surface border-t-4 border-bad-red">
+                    <span class="inline-block px-3 py-1 text-sm font-semibold rounded-full bg-dark-alt text-gray-400 mb-4">
+                        Tipo: Conhecimento Implícito
+                    </span>
+                    <div class="prompt-code bg-dark-alt text-bad-red/90 mb-4">
+                        Onde está a chave para a porta azul que eu te mostrei ontem?
+                    </div>
+                    <p class="text-sm text-gray-300">
+                        <span class="font-bold text-bad-red">Justificativa:</span> <span class="font-medium">A IA não possui **memória visual ou temporal** de interações passadas ou ambientes físicos.</span>
+                    </p>
+                </div>
+                
+                <!-- NOVO Exemplo 8: Tipo: Múltiplas Tarefas Sem Prioridade -->
+                <div class="section-card p-6 bg-dark-surface border-t-4 border-bad-red">
+                    <span class="inline-block px-3 py-1 text-sm font-semibold rounded-full bg-dark-alt text-gray-400 mb-4">
+                        Tipo: Sobrecarga de Tarefas
+                    </span>
+                    <div class="prompt-code bg-dark-alt text-bad-red/90 mb-4">
+                        Crie um site completo em Python, traduza-o para o mandarim, e summarize as notícias de hoje do Brasil.
+                    </div>
+                    <p class="text-sm text-gray-300">
+                        <span class="font-bold text-bad-red">Justificativa:</span> <span class="font-medium">A sobrecarga de **tarefas não relacionadas** e complexas leva a resultados ruins ou incompletos.</span>
+                    </p>
+                </div>
+                
+                <!-- NOVO Exemplo 9: Tipo: Uso de Jargão Incorreto/Obscuro -->
+                <div class="section-card p-6 bg-dark-surface border-t-4 border-bad-red">
+                    <span class="inline-block px-3 py-1 text-sm font-semibold rounded-full bg-dark-alt text-gray-400 mb-4">
+                        Tipo: Jargão Desalinhado
+                    </span>
+                    <div class="prompt-code bg-dark-alt text-bad-red/90 mb-4">
+                        Faça um algoritmo de reengenharia quântica para otimizar meu ciclo de laundry.
+                    </div>
+                    <p class="text-sm text-gray-300">
+                        <span class="font-bold text-bad-red">Justificativa:</span> <span class="font-medium">O uso de **termos técnicos desalinhados** com o tema confunde o modelo e invalida a saída.</span>
+                    </p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Rodapé/Call to Action -->
+        <footer class="mt-16 pt-8 text-center text-gray-500 border-t border-dark-alt">
+            <p class="text-sm">&copy; 2025 Guia de Prompting. Desenvolvido para comunicação clara.</p>
+        </footer>
+    </div>
+
+</body>
+</html>
